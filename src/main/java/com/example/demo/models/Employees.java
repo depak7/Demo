@@ -7,13 +7,12 @@ import java.util.Date;
 
 @Entity
 @Data
-
 public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "client_id")
     Client client;
 

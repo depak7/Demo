@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -44,22 +46,34 @@ public class EmployeeService {
         return new ResponseEntity<>(employeeResponseDto, HttpStatus.OK);
     }
 
+    private String generateEmployeeCode(long clientId, String name) {
+
+        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        return "EM" + clientId + "-" + timestamp;
+    }
+
 
     public ResponseEntity<EmployeeResponseDto> addEmployee(EmployeeRequestDto employeeRequestDto) {
+        System.out.println(employeeRequestDto);
         if (!clientRepository.existsById(employeeRequestDto.getClientId())) {
             throw new ClientNotFoundException(employeeRequestDto.getClientId());
         }
 
+        String generatedEmployeeCode = generateEmployeeCode(employeeRequestDto.getClientId(), employeeRequestDto.getName());
         Employees employee = new Employees();
         employee.setName(employeeRequestDto.getName());
         employee.setDesignation(employeeRequestDto.getDesignation());
         employee.setEnabled(employeeRequestDto.isEnabled());
+        employee.setEmployeeCode(generatedEmployeeCode);
         employee.setClient(clientRepository.findById(employeeRequestDto.getClientId()).get());
         employee.setLastModifiedDate(new Date());
 
+
         Employees savedEmployee = employeeRepository.save(employee);
 
+
         EmployeeResponseDto employeeResponseDto = Mapper.getEmployeeResponseDto(savedEmployee);
+
 
         return new ResponseEntity<>(employeeResponseDto, HttpStatus.CREATED);
     }

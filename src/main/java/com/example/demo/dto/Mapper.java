@@ -83,27 +83,28 @@ public class Mapper {
 
     public static Employees toEmployeeEntity(EmployeeResponseDto employeeResponseDto) {
         Employees employees = new Employees();
-        employees.setId(employeeResponseDto.getId());
+
         return employees;
 
     }
 
 
-    public static TicketDto toTicketDto(Ticket ticket) {
-        TicketDto ticketDto = new TicketDto();
-        ticketDto.setId(ticket.getId());
-        ticketDto.setTicketCode(ticket.getTicketCode());
-        ticketDto.setTitle(ticket.getTitle());
-        ticketDto.setStatus(ticket.getStatus());
-        return ticketDto;
+    public static TicketResponseDto mapToTicketResponseDto(Ticket ticket) {
+        TicketResponseDto ticketResponseDto = new TicketResponseDto();
+        ticketResponseDto.setId(ticket.getId());
+        ticketResponseDto.setTicketCode(ticket.getTicketCode());
+        ticketResponseDto.setTitle(ticket.getTitle());
+        ticketResponseDto.setStatus(ticket.getStatus());
+        ticketResponseDto.setLastModifiedDate(ticket.getLastModifiedDate());
+        return ticketResponseDto;
     }
 
-    public static Ticket ticketEntity(TicketDto ticketDto) {
+    public static Ticket ticketEntity(TicketRequestDto ticketRequestDto) {
         Ticket ticket = new Ticket();
-        ticket.setId(ticketDto.getId());
-        ticket.setTicketCode(ticketDto.getTicketCode());
-        ticket.setTitle(ticketDto.getTitle());
-        ticket.setStatus(ticketDto.getStatus());
+        ticket.setId(ticketRequestDto.getId());
+        ticket.setTicketCode(ticketRequestDto.getTicketCode());
+        ticket.setTitle(ticketRequestDto.getTitle());
+        ticket.setStatus(ticketRequestDto.getStatus());
         return ticket;
     }
 }

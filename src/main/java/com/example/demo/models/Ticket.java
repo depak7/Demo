@@ -18,7 +18,7 @@ public class Ticket {
     @JoinColumn(name = "client_id")
     Client client;
 
-    int ticketCode;
+    String ticketCode;
 
     String title;
     Date lastModifiedDate;

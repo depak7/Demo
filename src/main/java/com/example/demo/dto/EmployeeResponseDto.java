@@ -7,7 +7,7 @@ import java.util.Date;
 public class EmployeeResponseDto {
 
     int id;
-    int clientId;
+    long clientId;
     String name;
     String designation;
     String employeeCode;

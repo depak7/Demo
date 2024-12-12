@@ -28,6 +28,7 @@ public class EmployeeController {
 
     @PostMapping("create")
     public ResponseEntity<EmployeeResponseDto> addEmployee(@RequestBody EmployeeRequestDto employeeRequestDto) {
+        System.out.println(employeeRequestDto);
         return employeeService.addEmployee(employeeRequestDto);
     }
 
