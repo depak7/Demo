@@ -16,7 +16,7 @@ public class TicketController {
 
     @GetMapping("/client/{clientId}")
     public ResponseEntity<?> getAllTicketsForClient(@PathVariable int clientId,
-                                                    @RequestParam int page, @RequestParam int size) {
+                                                    @RequestParam(required = false, defaultValue = "0") int page, @RequestParam(required = false, defaultValue = "10") int size) {
         return ticketService.getAllTicketsForClient(clientId, page, size);
     }
 
@@ -29,6 +29,6 @@ public class TicketController {
 
     @PostMapping
     public ResponseEntity<?> addOrUpdateTicket(@RequestBody TicketRequestDto ticketRequestDto) {
-        return ticketService.addTicket(ticketRequestDto);
+        return ticketService.addOrUpdateTicket(ticketRequestDto);
     }
 }

@@ -101,8 +101,8 @@ public class Mapper {
 
     public static Ticket ticketEntity(TicketRequestDto ticketRequestDto) {
         Ticket ticket = new Ticket();
-        ticket.setId(ticketRequestDto.getId());
-        ticket.setTicketCode(ticketRequestDto.getTicketCode());
+//        ticket.setId(ticketRequestDto.getId());
+//        ticket.setTicketCode(ticketRequestDto.getTicketCode());
         ticket.setTitle(ticketRequestDto.getTitle());
         ticket.setStatus(ticketRequestDto.getStatus());
         return ticket;

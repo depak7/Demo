@@ -36,9 +36,7 @@ public class DisasterHandler {
         } else if (e instanceof EmployeeService.ClientNotFoundException) {
             return handleResourceNotFoundException(e);
         }
-        logger.error("Global Exception caught: ", e);
-        Throwable rootCause = e.getCause();
-        logger.error("Root cause: ", rootCause);
+        logger.error("Root cause: ", e);
         return new ResponseEntity<>(ErrorResponse.builder()
                 .message("An unexpected error occurred.")
                 .build(), HttpStatus.INTERNAL_SERVER_ERROR);
