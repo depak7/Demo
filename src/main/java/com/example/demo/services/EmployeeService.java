@@ -88,13 +88,13 @@ public class EmployeeService {
         return new ResponseEntity<>(employeeResponseDtoPage, HttpStatus.OK);
     }
 
-    public static class EmployeeNotFoundException extends RuntimeException {
+    public static class EmployeeNotFoundException extends IllegalArgumentException {
         public EmployeeNotFoundException(int id) {
             super("Employee with id " + id + " not found");
         }
     }
 
-    public static class ClientNotFoundException extends RuntimeException {
+    public static class ClientNotFoundException extends IllegalArgumentException {
         public ClientNotFoundException(Long id) {
             super("Client with id " + id + " not found");
         }

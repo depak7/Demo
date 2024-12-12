@@ -62,6 +62,4 @@ public class ClientService {
             super("Client with id " + id + " not found");
         }
     }
-
-
 }
